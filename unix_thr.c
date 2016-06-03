@@ -64,7 +64,7 @@ int main(int argc, char *argv[]) {
   }
 
   printf("message size: %i octets\n", size);
-  printf("message count: %li\n", count);
+  printf("message count: %li\n", (long)count);
 
   if (socketpair(AF_UNIX, SOCK_STREAM, 0, fds) == -1) {
     perror("socketpair");
@@ -122,9 +122,9 @@ int main(int argc, char *argv[]) {
 
 #endif
 
-    printf("average throughput: %li msg/s\n", (count * 1000000) / delta);
-    printf("average throughput: %li Mb/s\n",
-           (((count * 1000000) / delta) * size * 8) / 1000000);
+    printf("average throughput: %li msg/s\n", (long)((count * 1000000) / delta));
+    printf("average throughput: %li Mb/s\n", (long)(
+           (((count * 1000000) / delta) * size * 8) / 1000000));
   }
 
   return 0;
